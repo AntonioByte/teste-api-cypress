@@ -36,22 +36,4 @@ describe('Teste da funcionalidade produto', () => {
             expect(response.body.message).to.equal('Cadastro realizado com sucesso')
         })
     });
-
-    it.only('Cadastrar produto existente', () => {
-        cy.request({
-            method: 'POST',
-            url: '/produtos',
-            headers: { authorization: token },
-            body: {
-                "nome": "Logitech MX Vertical",
-                "preco": 470,
-                "descricao": "Mouse",
-                "quantidade": 381
-            },
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.equal(400)
-            expect(response.body.message).to.equal('Já existe produto com esse nome')
-        })
-    });
 });

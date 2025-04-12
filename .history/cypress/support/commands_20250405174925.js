@@ -23,17 +23,3 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('token', (email, password) => {
-    cy.request({
-        method: 'POST',
-        url: '/login',
-        body: {
-            "email": email,
-            "password": password
-        }
-    }).then((response) => {
-        expect(response.status).to.equal(200)
-        return response.body.authorization
-    })
-})

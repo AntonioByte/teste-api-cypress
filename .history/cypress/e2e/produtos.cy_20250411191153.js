@@ -41,7 +41,7 @@ describe('Teste da funcionalidade produto', () => {
         cy.request({
             method: 'POST',
             url: '/produtos',
-            headers: { authorization: token },
+            headers: { authorization: token }
             body: {
                 "nome": "Logitech MX Vertical",
                 "preco": 470,
