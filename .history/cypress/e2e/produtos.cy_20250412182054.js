@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import contrato from '../contratos/produtos.contratos'
+
 describe('Teste da funcionalidade produto', () => {
 
     let token
@@ -7,12 +7,6 @@ describe('Teste da funcionalidade produto', () => {
 
     beforeEach(() => {
         cy.token('fulano@qa.com', 'teste').then(tkn => { token = tkn })
-    });
-
-    it.only('Validar contrato de produtos', () => {
-        cy.request('/produtos').then(response => {
-            return contrato.validateAsync(response.body)
-        })
     });
 
     it('Listar produtos', () => {
@@ -83,7 +77,7 @@ describe('Teste da funcionalidade produto', () => {
         })
     });
 
-    it('Deletar produto previamente cadastrado', () => {
+    it.only('Deletar produto previamente cadastrado', () => {
         let nomeProduto = `Produto Novo ${Math.floor(Math.random() * 10000)}`
         cy.cadastrarProduto(token, nomeProduto, 220, "produto", 20)
             .then((response) => {

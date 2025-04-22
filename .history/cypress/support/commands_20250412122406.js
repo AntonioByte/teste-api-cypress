@@ -38,13 +38,13 @@ Cypress.Commands.add('token', (email, password) => {
     })
 })
 
-Cypress.Commands.add('cadastrarProduto', (token, nomeProduto, preco, descricao, quantidade) => {
+cy.Commands.add('cadastrarProdutos', (token, produto, preco, descricao, quantidade) => {
     cy.request({
         method: 'POST',
         url: '/produtos',
         headers: { authorization: token },
         body: {
-            "nome": nomeProduto,
+            "nome": produto,
             "preco": preco,
             "descricao": descricao,
             "quantidade": quantidade

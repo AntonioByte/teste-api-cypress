@@ -9,9 +9,9 @@ describe('Teste da funcionalidade produto', () => {
         cy.token('fulano@qa.com', 'teste').then(tkn => { token = tkn })
     });
 
-    it.only('Validar contrato de produtos', () => {
-        cy.request('/produtos').then(response => {
-            return contrato.validateAsync(response.body)
+    it('Validar contrato de produtos', () => {
+        cy.request('/produtos').then(respnse => {
+            return contrato. validateAsync(response.body)
         })
     });
 
@@ -83,7 +83,7 @@ describe('Teste da funcionalidade produto', () => {
         })
     });
 
-    it('Deletar produto previamente cadastrado', () => {
+    it.only('Deletar produto previamente cadastrado', () => {
         let nomeProduto = `Produto Novo ${Math.floor(Math.random() * 10000)}`
         cy.cadastrarProduto(token, nomeProduto, 220, "produto", 20)
             .then((response) => {

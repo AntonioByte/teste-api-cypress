@@ -1,18 +1,12 @@
 /// <reference types="cypress" />
-import contrato from '../contratos/produtos.contratos'
+
 describe('Teste da funcionalidade produto', () => {
 
     let token
     let idProduto
-
+    let nomeProduto
     beforeEach(() => {
         cy.token('fulano@qa.com', 'teste').then(tkn => { token = tkn })
-    });
-
-    it.only('Validar contrato de produtos', () => {
-        cy.request('/produtos').then(response => {
-            return contrato.validateAsync(response.body)
-        })
     });
 
     it('Listar produtos', () => {
@@ -51,7 +45,7 @@ describe('Teste da funcionalidade produto', () => {
             url: '/produtos/' + idProduto,
             headers: { authorization: token },
             body: {
-                "nome": "Logitech MXO Vertical",
+                "nome": "Mouse pad Logitech MX Vertical",
                 "preco": 470,
                 "descricao": "Mouse",
                 "quantidade": 381
@@ -68,7 +62,7 @@ describe('Teste da funcionalidade produto', () => {
             url: '/produtos/' + idProduto
         }).then((response) => {
             expect(response.status).to.equal(200)
-            expect(response.body.nome).to.equal('Logitech MXO Vertical')
+            expect(response.body.nome).to.equal(nomeProduto)
         })
     });
 
@@ -83,20 +77,4 @@ describe('Teste da funcionalidade produto', () => {
         })
     });
 
-    it('Deletar produto previamente cadastrado', () => {
-        let nomeProduto = `Produto Novo ${Math.floor(Math.random() * 10000)}`
-        cy.cadastrarProduto(token, nomeProduto, 220, "produto", 20)
-            .then((response) => {
-                let id = response.body._id
-                cy.request({
-                    method: 'DELETE',
-                    url: `/produtos/${id}`,
-                    headers: { authorization: token }
-                }).then((response) => {
-                    expect(response.status).to.equal(200)
-                    expect(response.body.message).to.equal("Registro excluído com sucesso")
-                })
-            })
-
-    });
 });

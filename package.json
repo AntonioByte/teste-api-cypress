@@ -11,5 +11,8 @@
   "description": "",
   "devDependencies": {
     "cypress": "^14.2.1"
+  },
+  "dependencies": {
+    "joi": "^17.13.3"
   }
 }
