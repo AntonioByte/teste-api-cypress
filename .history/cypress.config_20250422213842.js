@@ -8,6 +8,7 @@ module.exports = defineConfig({
     overwrite: false,
     html: false,
     json: true,
+    configFile: 'reporter-config.json',
   },
 
   e2e: {

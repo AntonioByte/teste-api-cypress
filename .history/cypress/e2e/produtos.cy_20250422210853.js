@@ -12,7 +12,8 @@ describe('Teste da funcionalidade produto', () => {
     it('Validar contrato de produtos', () => {
         cy.request('/produtos').then(response => {
             return contrato.validateAsync(response.body)
-            expect(response.status).to.equal(200)
+        }).then(response => {
+            expect(response.code).to.equal(200)
         })
     });
 

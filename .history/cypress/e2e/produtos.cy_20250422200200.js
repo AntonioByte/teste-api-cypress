@@ -9,10 +9,11 @@ describe('Teste da funcionalidade produto', () => {
         cy.token('fulano@qa.com', 'teste').then(tkn => { token = tkn })
     });
 
-    it('Validar contrato de produtos', () => {
+    it.only('Validar contrato de produtos', () => {
         cy.request('/produtos').then(response => {
             return contrato.validateAsync(response.body)
-            expect(response.status).to.equal(200)
+        }).then(response => {
+            expect(response.code).to.equal(200)
         })
     });
 
